@@ -1,0 +1,137 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html>
+<head>
+  <!-- META -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <title>Game of thrones</title>
+
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="app.css"><!-- load bootstrap -->
+
+</head>
+
+
+<body ng-app="myApp" ng-cloak>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script src="https://use.fontawesome.com/7a328100ae.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
+  <script src="app.js"></script>
+
+
+<div id="main-container" layout="column" ng-controller="mainController">
+
+
+  <div id="header" layout="row">
+    <div class="col-md-6">
+        <b>Game of thrones</b> - finding the battles</p>
+    </div>
+
+  </div>
+
+  <div id="main-body" layout="row">
+
+    <div id="left-pane" class="col-md-3">
+
+      <md-input-container>
+        <label>Name:</label>
+      <input flex type="text" ng-model="searchTermName" aria-label="srach term" aria-controls="red-slider">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Battle type:</label>
+        <input flex type="text" ng-model="searchTermType" aria-label="srach term" aria-controls="red-slider">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Location:</label>
+        <input flex type="text" ng-model="searchTermLocation" aria-label="srach term" aria-controls="red-slider">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Attacker KIng:</label>
+        <input flex type="text" ng-model="searchTermAKing" aria-label="srach term" aria-controls="red-slider">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Defender KIng:</label>
+        <input flex type="text" ng-model="searchTermDKing" aria-label="srach term" aria-controls="red-slider">
+      </md-input-container>
+
+      <div>
+      <md-button class="md-raised md-primary" ng-click="search()">Search <i class="fa fa-search" aria-hidden="true"></i></md-button>
+      </div>
+
+    </div>
+
+
+    <div id="right-pane" class="col-md-9">
+
+      <div id="searchRow" class="ui-widget">
+          <div id="search-count" class="col-md-3">
+          <p>We have found <span class="label label-info"><b>{{ resultCount }}</b></span> results</p>
+            </div>
+      </div>
+
+      <div id="searchRow" class="ui-widget">
+        <div id="search-count" class="col-md-3">
+          <p>Attacker Outcome: Win <span class="label label-info"><b>{{ stats.attacker_outcome.win }}</b></span> </p>
+          <p>Attacker Outcome: loss <span class="label label-info"><b>{{ stats.attacker_outcome.loss }}</b></span> </p>
+        </div>
+      </div>
+
+      <div id="searchRow" class="ui-widget">
+        <div id="search-count" class="col-md-3">API:
+          <p>List:  '/api/battles/list'</p>
+          <p>Stats:  '/api/battles/stats'</p>
+          <p>Count:  '/api/battles/count'</p>
+          <p>Search:  '/api/battles/search?name=ffds&type=f&location=faf&defender_king=dad&attacker_king=fd'</p>
+        </div>
+      </div>
+
+        <md-toolbar class="md-theme-light">
+          <h2 class="md-toolbar-tools">
+            <span>Battles</span>
+          </h2>
+        </md-toolbar>
+        <md-content>
+          <md-list>
+            <md-list-item class="md-3-line" ng-repeat="item in battles">
+              <div class="md-list-item-text">
+                <h3><i class="fa fa-fast-forward" aria-hidden="true"></i> Name:<b>{{item.name}}</b></h3>
+                <p> Battle Type:{{item.battle_type}}</p>
+                <p> Region:{{item.region}}</p>
+                <p> Location:{{item.location}}</p>
+                <p> Attacker King:{{item.attacker_king}}</p>
+                <p> Defender King:{{item.defender_king}}</p><br>
+              </div>
+              <md-button class="md-secondary"><i class="fa fa-eye" aria-hidden="true"></i></md-button>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

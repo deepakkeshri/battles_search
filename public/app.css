@@ -1,0 +1,36 @@
+
+#main-container {
+
+  background: #b3fcff;
+}
+
+#header {
+  margin-top: 0px;
+  text-align: center;
+  padding-left: 10px;
+  background: white;
+  border: 5px;
+  border-color: black;
+}
+
+#left-pane {
+  background-color: rgb(173,178,198);
+  padding: 10px;
+  width: 30%;
+}
+
+#right-pane {
+  width: 100%;
+}
+
+#searchRow {
+  padding: 10px;
+}
+
+#search-count {
+
+}
+
+#main-body {
+  min-height:650px;
+}
